@@ -1,6 +1,7 @@
 define(['backbone', 'localstorage'], function(B) {
     var Model = B.Model.extend({
-        localStorage: new B.LocalStorage("card"),
+        // localStorage: new B.LocalStorage("card"),
+        urlRoot:"/card",
         defaults: {
             name: "",
             title: "",
@@ -20,6 +21,11 @@ define(['backbone', 'localstorage'], function(B) {
                 return {attr:"title",msg:"职位信息不能为空"}
             }
             //.....
+        },
+        ////////执行服务器交互操作后的返回结果
+        parse:function(res){
+            console.log(res)
+            this.set(res.data)
         }
     })
 
