@@ -75,19 +75,19 @@ app.put('/card/:id', (req, res) => {
   console.log(req.body);
   /////在服务器端保存数据 把数据写入数据库 
   /////在返回数据的时候把保存的数据读取出来放入data值中
-  var card = new Card(req.body);
-  card.update_time = Date();
+  var card = req.body;
+  card.update_time = Date.now();
   /////根据id进行查找 并修改
-  Card.findByIdAndUpdate(req.params.id, req.body, (err) => {
+  Card.findByIdAndUpdate(req.params.id, card, (err) => {
     /////如果报错 执行err中的方法
     if (err) { 
       res.json({ status: "n", msg: "修改数据失败", data: {} });
     }
     else {
-      var data = card.toObject();
-      data.id = req.params.id;
-      delete data._id
-      res.json({ status: "y", msg: "修改数据成功", data: data });
+      // var data = card.toObject();
+      card.id = req.params.id;
+      delete card._id
+      res.json({ status: "y", msg: "修改数据成功", data: card });
     }
   })
 })

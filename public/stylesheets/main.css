@@ -148,3 +148,21 @@ form input[type=submit]{
 form span{
     color:red;
 }
+
+.cards{ 
+    border: 1px solid #000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width:80%;
+    margin: 0 auto;
+    font-size: 20px;
+    color: #fff;
+
+}
+.cards tr{
+    border: 1px solid #000;
+}
+.cards a{
+    color: #fff;
+}

@@ -1,29 +1,98 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>我的名片</title>
-        <link rel="stylesheet" href="stylesheets/main.css">
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8" />
+    <title>我的名片</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+
+<body>
+
+    <!-- <script data-main="controllers/index_controller" src="libs/require.js"></script>-->
+    <script type="text/template" id="indexView">
         <main>
             <article>
                 <img class="logo" src="images/logo.png" />
-                <h1><small></small></h1>
+                <h1><%= name %><small><%= title %></small></h1>
                 <address>
-                    <p class="addr"></p>
-                    <p class="tel"></p>
-                    <p class="qq"></p>
-                    <p class="email"></p>
+                    <p class="addr"><%= address %></p>
+                    <p class="tel"><%= phone %></p>
+                    <p class="qq"><%= qq %></p>
+                    <p class="email"><%= email %></p>
                 </address>
                 <img class="pic" src="images/xrk.png" />
             </article>
             <aside>
                 <div class="photo"></div>
-                <p>喜欢Ruby,精通各种技术的全栈工程师。</p>
+                <p><%= description %></p>
             </aside>
         </main>
-        <div class="edit" onclick="location.href='edit.html'">编辑</div>
-        <script data-main="controllers/index_controller" src="libs/require.js"></script>
-    </body>
+        <div class="edit" style="right:140px;" onclick="location.href='#list'">列表</div>
+        <div class="edit" style="right:80px;" onclick="location.href='#new'">新增</div>
+        <div class="edit" onclick="location.href='#edit/<%= id %>'">编辑</div>
+    </script>
+    <script type="text/template" id="editView">
+        <main>
+            <form action="#">
+                <div>姓名：<span for="name"></span></div>
+                <div>
+                    <input type="text" name="name" autofocus placeholder="请输入姓名">
+                </div>
+                <div>职位：<span for="title"></span></div>
+                <div>
+                    <input type="text" name="title" placeholder="请输入职位">
+                </div>
+                <div>地址：<span for="address"></span></div>
+                <div>
+                    <input type="text" name="address" placeholder="请输入详细地址">
+                </div>
+                <div>手机号：<span for="phone"></span></div>
+                <div>
+                    <input type="text" name="phone" placeholder="请输入手机号">
+                </div>
+                <div>QQ号：<span for="qq"></span></div>
+                <div>
+                    <input type="text" name="qq" placeholder="请输入QQ号">
+                </div>
+                <div>电子邮箱：<span for="email"></span></div>
+                <div>
+                    <input type="text" name="email" placeholder="请输入电子邮箱地址">
+                </div>
+                <div>介绍：<span for="description"></span></div>
+                <div>
+                    <textarea name="description" placeholder="请输入个人简介"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="保存">
+                </div>
+            </form>
+        </main>
+    </script>
+    <script type="text/template" id="listView">
+    <table class="cards">
+        <tr>
+            <td>姓名</td>
+            <td>tel</td>
+            <td>email</td>
+            <td>qq</td>
+        </tr>
+        <% _.each(model,function(item){ %>
+        <tr>
+            <td><a href="#index/<%= item.id %>"><%= item.name %></a></td>
+            <td><%= item.phone %></td>
+            <td><%= item.email %></td>
+            <td><%= item.qq %></td>
+        </tr>
+        <%})%>
+    </table>
+    <div class="edit" style="right:80px;" onclick="location.href='#new'">新增</div>
+    </script>
+
+    <!--<a href="#index">【index】</a>
+    <a href="#new">【new】</a>
+    <a href="#edit/kkkk">【edit】</a>-->
+    <script src="libs/require.js" data-main="app"></script>
+</body>
+
 </html>

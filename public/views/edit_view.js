@@ -1,7 +1,8 @@
 define(['jquery', 'backbone'], function ($, B) {
 
     var View = B.View.extend({
-        el: $("form"),
+        el: $("body"),
+        template:_.template($("#editView").html()),
         initialize: function () {
             console.log('edit view initialized ...')
             this.render()
@@ -14,6 +15,7 @@ define(['jquery', 'backbone'], function ($, B) {
             })
         },
         render: function () {
+            this.$el.html(this.template(this.model.toJSON()))
             //////把this.model中的数据填写在表单内容中
             //this.$('input[name="name"]').val(this.model.get('name'))
             var temModel = this.model; /////把this.model暂存
@@ -39,7 +41,7 @@ define(['jquery', 'backbone'], function ($, B) {
             // this.model.set('name', this.$('input[name="name"]').val())
             // this.model.set('title', this.$('input[name="title"]').val())
             // this.$el.serialize(); /////////name=xx&title=xx&......
-            var arr = this.$el.serializeArray(); /////////[{"name":"name","value":""},{"name":"title","value":""}...]
+            var arr = this.$('form').serializeArray(); /////////[{"name":"name","value":""},{"name":"title","value":""}...]
             /****
              * 
              * {name:"",title:"",phone:"",email...}
