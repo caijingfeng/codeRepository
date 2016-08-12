@@ -1,0 +1,27 @@
+{{each model as item}}
+<main>
+     
+    <article>
+        <img class="logo" src="images/logo.png" />
+        <h1>{{item.name}}<small>{{item.title}}</small></h1>
+        <address>
+                    <p class="addr">{{item.address}}</p>
+                    <p class="tel">{{item.phone}}</p>
+                    <p class="qq">{{item.qq}}</p>
+                    <p class="email">{{item.email}}</p>
+                </address>
+        <img class="pic" src="images/xrk.png" />
+    </article>
+    <aside>
+        <div class="photo"></div>
+        <p>
+            {{item.description}}
+        </p>
+    </aside>
+   
+</main>
+
+ {{/each}}
+<div class="edit" style="right:140px;" onclick="location.href='#list'">列表</div>
+<div class="edit" style="right:80px;" onclick="location.href='#new'">新增</div>
+<div class="edit" onclick="location.href='#edit/<%= id %>'">编辑</div>

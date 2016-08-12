@@ -1,0 +1,35 @@
+<table class="cards">
+    <tr>
+        <td>姓名</td>
+        <td>tel</td>
+        <td>email</td>
+        <td>qq</td>
+    </tr>
+    <!--<% _.each(model,function(item){ %>-->
+    {{each model as item}}
+        <tr>
+            <td>
+                <a href="#index/{{item.id}}">
+                    <!--<%= item.name %>-->
+                    {{item.name}}
+                </a>
+            </td>
+            <td>
+                <!--<%= item.phone %>-->
+                {{item.phone}}
+            </td>
+            <td>
+                <!--<%= item.email %>-->
+                {{item.email}}
+            </td>
+            <td>
+                <!--<%= item.qq %>-->
+                {{item.qq}}
+            </td>
+            <td class="btn-del" href='javascript:void(0)' data-id="{{item.id}}">删除</td>
+        </tr>
+        
+        <!--<%})%>-->
+        {{/each}}
+</table>
+<div class="edit" style="right:80px;" onclick="location.href='#new'">新增</div>
